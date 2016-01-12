@@ -21,6 +21,13 @@ return {
       }).catch(function(err) {
         console.log(err);
       })
+    },
+
+    getUsers : function() {
+      return $http.get('/directory')
+      .then(function(res) {
+        return res.data;
+      });
     }
 }
 }])
@@ -52,7 +59,7 @@ myApp.controller('homeController', ['$scope', 'myService', function($scope, mySe
 
     console.log("postUser from ng-submit is getting invoked", newUser);
 
-    myService.addUser({username : newUser})
+    myService.addUser({username : newUser.toString()})
     .then(function(newUser) {
       console.log(newUser);
       $scope.data.push(newUser);
@@ -112,6 +119,20 @@ myApp.controller('gitHubDataController', ['$scope', '$http', 'myService', functi
   }
 
 }]);
+  
+// Making a controller for loading up the Results from the Database.
+myApp.controller('directoryController', ['$scope', 'myService', function($scope, myService) {
+
+    $scope.fetchUsers = function() {
+      myService.getUsers().then(function(data){
+        console.log("Tring to get users from the database", data);
+        $scope.data = data;
+      })
+    }
+
+  $scope.fetchUsers();
+
+}])
 
 
 // ROUTES
@@ -138,6 +159,11 @@ myApp.config(function ($routeProvider) {
   .when('/github', {
     templateUrl: 'pages/github.html',
     controller: 'gitHubDataController'
+  })
+
+  .when('/directory', {
+    templateUrl: 'pages/directory.html',
+    controller: 'directoryController'
   })
 
 });

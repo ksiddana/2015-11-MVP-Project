@@ -25,21 +25,24 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 // app.use(methodOverride());
 
 
-app.get('/github',function(req,res,next){
-  console.log('POST /github');
+app.get('/directory',function(req, res){
+  console.log('POST /directory');
   var path = url.parse(req.url, true).pathname;
   console.log(path);
 
-  db.getUsers().then(function(data){
-    res.status(200).send(data);
+  db.users.find({}, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.status(200).send(data);
+    }
   });
-  next();
 })
 
 app.post('/',function(req, res) {
   console.log("\n\n\n----------------");
-  console.log("Storing the Data from the Browser:");
-  db.saveUser(req.body);
+  console.log("Storing the Data from the Browser:", req.body);
+  db.saveUsers(req.body);
   res.status(201).send('Server Stored :' + JSON.stringify(req.body));
 });
 

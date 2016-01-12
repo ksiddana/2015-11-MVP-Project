@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 mongoose.connect('mongodb://localhost/github');
 
 var db = mongoose.connection;
@@ -10,19 +11,20 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("Connected to MongoDB:");
 
+});
   //parent doc
   var UserSchema = mongoose.Schema({
-    username: {type:String, index:{ unique:true }}
+    // username: { type:String, index:{ unique:true } }
+    username: String 
   });
 
 
   var User = mongoose.model('User',UserSchema);
   //var Message = mongoose.model('Message',MessageSchema);
 
-
-  // User.remove({}, function(err) { 
-  //  console.log('collection removed') 
-  // });
+/*  User.remove({}, function(err) { 
+   console.log('collection removed') 
+  });*/
 
 /*  User.remove({}).then(function(err){
     console.log('promised remove');
@@ -45,37 +47,36 @@ db.once('open', function() {
         // console.log(users);
       })
   });*/
-});
+
   
   //exports.saveUser = User;
-  exports.getUsers = function(){
+var getUser = function(){
     //must return a promise
 
     return User.find({},function(err,data){
       if(err){
         console.log(err);
-      }else{
-        return data;
       }
+    }).then(function(data) {
+      return data;
     });
-  }
+}
 
-  exports.saveUser = function(userObj){
+var saveUser = function(userObj){
     console.log('stored', userObj)
     
     var user = new User(userObj);
 
+    // user.save();
     user.save(function(err,user){
       if (err) return console.error(err);
       console.log('promised save', user);
       return user;
     })
-    .then(function(user){
-        user.find().then(function(users){
-          console.log(users);
-        })
-    });
-  }
+}
 
-
-
+module.exports = {
+  users : User,
+  saveUsers : saveUser,
+  getUsers : getUser
+}
