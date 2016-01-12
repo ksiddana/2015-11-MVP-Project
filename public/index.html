@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="myApp">
+    <head>
+        <title>Git Me</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta charset="UTF-8">
+
+        <!-- load bootstrap and fontawesome via CDN -->
+        <link rel="stylesheet" href="style.css"/>
+        
+        <!-- load angular via CDN -->
+        <script src="lib/angular/angular.min.js"></script>
+        <script src="lib/angular-route/angular-route.min.js"></script>
+        <script src="http://code.angularjs.org/1.3.0-rc.2/angular-resource.min.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+
+        <header>
+			<nav class="navigation-header">
+			<div class="container">
+					<h3>GitMe Some API</h3>
+
+				<ul class="navigation">
+					<li><a href="#/">Home</a></li>
+                    <li><a href="#/github">Github</a></li>
+				</ul>
+			</div>
+			</nav>
+		</header>
+
+        <div class="">
+
+        <div ng-view></div>
+
+		</div>
+
+    </body>
+</html>

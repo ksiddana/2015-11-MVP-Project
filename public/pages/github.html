@@ -1,0 +1,29 @@
+<h3>GITHUB DISPLAY for {{ userData.name }} </h3>
+  <span> {{ userData.name }}</span>
+  <br>
+  <a href="{{ userData.html_url }}" target=" " class="submitButton">Github Account
+  </a>
+
+
+<table id="githubDisplayResults">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Blog</th>
+      <th>Followers</th>
+      <th>Following</th>
+      <th>location</th>
+      <th>Recently Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img class="githubProfile" src="{{ userData.avatar_url }}"></td>
+      <td><a href="{{ userData.blog }}" class="">{{ userData.blog }}</a></td>
+      <td> {{ userData.followers }} </td>
+      <td> {{ userData.following }} </td>
+      <td> {{ userData.location }}  </td>
+      <td> {{ userData.updated_at }}  </td>
+    </tr>
+  </tbody>
+</table>
