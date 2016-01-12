@@ -15,7 +15,14 @@ db.once('open', function() {
   //parent doc
   var UserSchema = mongoose.Schema({
     // username: { type:String, index:{ unique:true } }
-    username: String 
+    username: String,
+    name: String,
+    image: String,
+    blog: String,
+    followers: Number,
+    following: Number,
+    location: String,
+    updated_at: Date
   });
 
 

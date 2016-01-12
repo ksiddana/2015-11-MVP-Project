@@ -41,8 +41,8 @@ app.get('/directory',function(req, res){
 
 app.post('/',function(req, res) {
   console.log("\n\n\n----------------");
-  console.log("Storing the Data from the Browser:", req.body);
-  db.saveUsers(req.body);
+  console.log(typeof req.body);
+  db.saveUsers(req.body)
   res.status(201).send('Server Stored :' + JSON.stringify(req.body));
 });
 

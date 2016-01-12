@@ -1,6 +1,28 @@
 <h3>Getting the Data from MongoDB </h3>
-<ul ng-repeat="user in data">
-  <li> {{ user.username }}</li>
-</ul>
+
+<table id="githubDisplayResults">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Full Name</th>
+          <th>Blog</th>
+          <th>Followers</th>
+          <th>Following</th>
+          <th>location</th>
+          <th>Recently Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in data | filter: searchGithubUser">
+          <td><a <img class="githubProfile" src="{{ user.image }}"></a></td>
+          <td> {{ user.name }} </td>
+          <td><a href="{{ user.blog }}">Blog</a></td>
+          <td> {{ user.followers }} </td>
+          <td> {{ user.following }} </td>
+          <td> {{ user.location }}  </td>
+          <td> {{ user.updated_at }}  </td>
+        </tr>
+  </tbody>
+</table>
 
 

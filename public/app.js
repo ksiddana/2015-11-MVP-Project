@@ -12,9 +12,23 @@ return {
     this.city : "San Francisco, CA",
     this.githubUser : "",*/
 
+
+
     addUser : function(userObj) {
-      console.log("From controller to Service:", userObj);
-      return $http.post('/', userObj)
+      
+      var storedObject = {
+        username : userObj.login,
+        name : userObj.name,
+        image : userObj.avatar_url,
+        blog : userObj.blog,
+        followers : userObj.followers,
+        following : userObj.following,
+        location : userObj.location,
+        updated_at : userObj.updated_at
+      }
+
+      console.log("From controller to Service:", storedObject);
+      return $http.post('/', storedObject)
       .then(function(res){
         console.log("From controller to Service:", res.data);
         return res.data;
@@ -59,7 +73,7 @@ myApp.controller('homeController', ['$scope', 'myService', function($scope, mySe
 
     console.log("postUser from ng-submit is getting invoked", newUser);
 
-    myService.addUser({username : newUser.toString()})
+    myService.addUser( { username : newUser  } )
     .then(function(newUser) {
       console.log(newUser);
       $scope.data.push(newUser);
@@ -74,7 +88,7 @@ myApp.controller('homeController', ['$scope', 'myService', function($scope, mySe
 
 // SETUP CONTROLLERS
   // FORECAST CONTROLLER
-myApp.controller('forecastController', ['$scope', '$resource', 'myService', function($scope, $resource, myService) {
+/*myApp.controller('forecastController', ['$scope', '$resource', 'myService', function($scope, $resource, myService) {
 
   $scope.city = myService.city;
   console.log("forecastController: ", $scope.city);
@@ -85,7 +99,7 @@ myApp.controller('forecastController', ['$scope', '$resource', 'myService', func
 
   console.log("Resulting API: ", $scope.weatherResult);
 
-}]);
+}]);*/
 
 // SETUP CONTROLLERS
   // GITHUB CONTROLLER
@@ -112,6 +126,7 @@ myApp.controller('gitHubDataController', ['$scope', '$http', 'myService', functi
     $http.get("https://api.github.com/users/" + $scope.username)
             .success(function (data) {
               $scope.userData = data;
+              myService.addUser($scope.userData);
             })
             .then(function(data) {
               console.log($scope.userData);
@@ -146,7 +161,7 @@ myApp.config(function ($routeProvider) {
     controller: 'homeController'
   })
 
-  .when('/forecast', {
+/*  .when('/forecast', {
     templateUrl: 'pages/forecast.html',
     controller: 'forecastController'
   })
@@ -154,7 +169,7 @@ myApp.config(function ($routeProvider) {
   .when('/forecast/:days', {
     templateUrl: 'pages/forecast.html',
     controller: 'forecastController'
-  })
+  })*/
 
   .when('/github', {
     templateUrl: 'pages/github.html',
