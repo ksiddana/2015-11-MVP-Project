@@ -47,9 +47,8 @@ return {
     deleteUserFromDatabase : function(deleteUser) {
 
       return $http.post('/directory', deleteUser);
-
     }
-}
+  }
 }])
 
 
