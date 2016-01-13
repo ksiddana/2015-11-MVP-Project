@@ -30,7 +30,9 @@ app.get('/directory',function(req, res){
   var path = url.parse(req.url, true).pathname;
   console.log(path);
 
+
   db.users.find({}, function(err, data) {
+    // db.users.remove({name : 'David'});
     if (err) {
       console.log(err);
     } else {
@@ -38,6 +40,18 @@ app.get('/directory',function(req, res){
     }
   });
 })
+
+app.post('/directory',function(req, res) {
+  console.log("\n\n\n----------------");
+  console.log(req.body.username);
+  db.users.remove({ username : req.body.username }, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.status(201).send('Server Deleting :' + JSON.stringify(req.body.name));
+    }
+  });
+});
 
 app.post('/',function(req, res) {
   console.log("\n\n\n----------------");

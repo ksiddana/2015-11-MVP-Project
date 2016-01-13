@@ -55,11 +55,13 @@ db.once('open', function() {
       })
   });*/
 
+
   
   //exports.saveUser = User;
 var getUser = function(){
     //must return a promise
-
+  
+  
     return User.find({},function(err,data){
       if(err){
         console.log(err);
@@ -81,6 +83,8 @@ var saveUser = function(userObj){
       return user;
     })
 }
+
+
 
 module.exports = {
   users : User,

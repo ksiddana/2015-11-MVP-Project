@@ -42,6 +42,12 @@ return {
       .then(function(res) {
         return res.data;
       });
+    },
+
+    deleteUserFromDatabase : function(deleteUser) {
+
+      return $http.post('/directory', deleteUser);
+
     }
 }
 }])
@@ -82,6 +88,8 @@ myApp.controller('homeController', ['$scope', 'myService', function($scope, mySe
       console.log("\n\n\n---------------\n", err);
     })
   }
+
+
 
 }]);
 
@@ -143,6 +151,12 @@ myApp.controller('directoryController', ['$scope', 'myService', function($scope,
         console.log("Tring to get users from the database", data);
         $scope.data = data;
       })
+    }
+
+    $scope.deleteUser = function(deleteUserObj) {
+      console.log("Trying to Delete User", deleteUserObj);
+      // myService.deleteUser()
+      myService.deleteUserFromDatabase(deleteUserObj)
     }
 
   $scope.fetchUsers();
