@@ -1,4 +1,9 @@
 <h3>Getting the Data from MongoDB </h3>
+<br>
+
+<div class="searchDirectory">Search for your Github Friends
+<input name='search' type="text" ng-model="searchGithubUser"/></div>
+
 
 <table id="githubDisplayResults">
       <thead>
@@ -14,9 +19,9 @@
       </thead>
       <tbody>
         <tr ng-repeat="user in data | filter: searchGithubUser">
-          <td><a <img class="githubProfile" src="{{ user.image }}"></a></td>
+          <td><img class="githubProfile" src="{{ user.image }}"></td>
           <td> {{ user.name }} </td>
-          <td><a href="{{ user.blog }}">Blog</a></td>
+          <td><a href="{{ user.blog }}" target="_blank">Check Out Ma Blog</a></td>
           <td> {{ user.followers }} </td>
           <td> {{ user.following }} </td>
           <td> {{ user.location }}  </td>
