@@ -50,30 +50,34 @@ body {
 }
 
 .home {
-  align-content: center;
+  text-align: center;
+  margin : auto;
   background: url('github-psd-icon.jpg');
   background-repeat: no-repeat;
-  height: 500px;
-  opacity: 0.7;
+  height: 600px;
+  opacity: 0.8;
+  background-position: center;
+}
+
+.home form {
+  /*height: 200px;*/
 }
 
 .home input {
   width: 400px;
   height: 20px;
-
-
 }
 
 .submitButton {
   display: inline-block;
   padding: 8px 18px;
   font-size: 14px;
-  color: #444;
+  color: #FFF;
   text-decoration: none;
   border: 1px solid black;
   margin-top: 10px;
   border-radius: 5px;
-  background-color: #eaeaea;
+  background-color: #3673AF;
 }
 
 table { 
